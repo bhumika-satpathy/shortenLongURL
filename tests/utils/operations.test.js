@@ -1,11 +1,11 @@
-const {redirect,shortenedURL}=require('../../src/utils/operations');
+const {redirect,shortenedURL}=require('../../utils/operations');
 const sequelize=require('../../src/connection.js');
 describe('The redirect function ',()=>{
     it('should ',async()=>{
         const mockSequelize=jest.spyOn(sequelize,'query');
-        mockSequelize.mockResolvedValue('{shortURL:"www.google.com"}');
+        mockSequelize.mockResolvedValue('www.google.com');
         const res=await redirect('https://akhromieiev.com');
-        expect(res).toEqual('{shortURL:"www.google.com"}');
+        expect(res).toEqual("www.google.com");
         expect(mockSequelize).toHaveBeenCalled();
     })
 })

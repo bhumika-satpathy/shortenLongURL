@@ -4,7 +4,7 @@ const sequelize=require('../src/connection')
 //Shorten the long URL
 const shortenedURL=async(address)=>{
     address.shortURL=shortid.generate();
-    await sequelize.query('INSERT INTO urlshortener(longURL,shortURL) VALUES (:longURL,:shortURL)',{
+    await sequelize.query(`INSERT INTO urlshortener (longURL,shortURL) VALUES (:longURL,:shortURL)`,{
         replacements:{
             longURL:address.longURL,
             shortURL:address.shortURL,
@@ -14,10 +14,11 @@ const shortenedURL=async(address)=>{
 }
 
 // Redirect to another page for 30 mins
-const redirect=async(longURL)=>{
-    const shortURL=await sequelize.query(`SELECT shortURL from urlshortener where urlshortener.longURL=${longURL}`,
+const redirect=async(changelongURL)=>{
+    const newURL= await sequelize.query(`SELECT shortURL FROM urlshortener WHERE urlshortener.longURL='${changelongURL}';`,
     {type: sequelize.QueryTypes.SELECT});
-    return shortURL;
+    console.log(newURL);
+    return newURL;
 }
 
 module.exports={redirect,shortenedURL};
