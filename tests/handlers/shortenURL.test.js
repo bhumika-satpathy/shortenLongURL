@@ -3,11 +3,10 @@ const operations=require('../../src/utils/operations');
 
 
 describe('The getHandler function ',()=>{
-    it('should return a status code of 200 when successful',async()=>{
+    it('should return a status code of 200 when successful',async(done)=>{
         const mockRedirect=jest.spyOn(operations,'redirect');
         const mockReq={
-            payload:'https://akhromieiev.com'
-            
+            payload:'https://akhromieiev.com' 
         }
 
         const mockCode=jest.fn();
@@ -18,8 +17,10 @@ describe('The getHandler function ',()=>{
         }
         mockRedirect.mockResolvedValue(`www.google.com`);
         await getHandler(mockReq,mockH);
+        expect(mockRedirect).toHaveBeenCalled();
         expect(mockCode).toHaveBeenCalledWith(200);
         expect(mockH.response).toHaveBeenCalledWith(`Redirected to www.google.com`);
         mockRedirect.mockRestore();
+        done();
     })
 })
