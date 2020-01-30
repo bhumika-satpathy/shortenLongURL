@@ -9,19 +9,20 @@ const {redirect,shortURL}=require('../utils/operations')
 //   }catch(err){
 //     h.response(err.message);
 //   } 
-}
+
 
 // Redirects to a particular URL
 const getHandler=async(req,h)=>{
   try{
     const res=redirect(req.payload);
     await h.redirect(res).temporary();
+    return h.response(`Redirected to ${res}`).code(200);
   }catch(err){
     return h.response(err.message).code(500);
   }
 }
 
-module.exports={postHandler,getHandler}
+module.exports=getHandler
 
 /*
 let request = require("request");
