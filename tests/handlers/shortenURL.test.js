@@ -87,4 +87,28 @@ describe('The post handler function',()=>{
         mockShortenURL.mockRestore();
         // mockReq.mockRestore();
     })
+
+    it('should throw an error of status code 500 when file error is encountered',async()=>{
+        const mockReq={
+            payload:{
+                url:'http://thelongestlistofthelongeststuffatthelongestdomainnameatlonglast.com/wearejustdoingthistobestupidnowsincethiscangoonforeverandeverandeverbutitstilllookskindaneatinthebrowsereventhoughitsabigwasteoftimeandenergyandhasnorealpointbutwehadtodoitanyways.html'
+            }
+        }
+
+        const mockCode=jest.fn();
+        const mockH={
+            response:jest.fn(()=>{
+                return {code:mockCode}
+            })
+        }
+
+        const mockShortenURL=jest.spyOn(operations,'shortenURL');
+        mockShortenURL.mockRejectedValue(new Error('File error encountered!'));
+
+        await postHandler(mockReq,mockH);
+        expect(mockH.response).toHaveBeenCalledWith('File error encountered!');
+        expect(mockCode).toHaveBeenCalledWith(500);
+
+        mockShortenURL.mockRestore();
+    })
 })
