@@ -6,9 +6,8 @@ describe('The getHandler function ',()=>{
     it('should return a status code of 200 when successful',async()=>{
         const mockRedirect=jest.spyOn(operations,'redirect');
         const mockReq={
-            payload:{
-                shortURL:'https://akhromieiev.com'
-            }
+            payload:'https://akhromieiev.com'
+            
         }
 
         const mockCode=jest.fn();
