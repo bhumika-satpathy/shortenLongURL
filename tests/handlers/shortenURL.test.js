@@ -1,4 +1,4 @@
-const getHandler=require('../../src/handlers/shortenURL');
+const {getHandler,postHandler}=require('../../src/handlers/shortenURL');
 const operations=require('../../utils/operations');
 
 
@@ -64,6 +64,27 @@ describe('The getHandler function ',()=>{
 })
 
 
-// describe('The post handler function',()=>{
-//     it('should return a resp',async()=>)
-// })
+describe('The post handler function',()=>{
+    it('should return a resp',async()=>{
+        const mockShortenURL=jest.spyOn(operations,'shortenURL');
+        mockShortenURL.mockResolvedValue('www.xyz.com');
+
+        const mockReq={
+            payload:{
+                url:'http://thelongestlistofthelongeststuffatthelongestdomainnameatlonglast.com/wearejustdoingthistobestupidnowsincethiscangoonforeverandeverandeverbutitstilllookskindaneatinthebrowsereventhoughitsabigwasteoftimeandenergyandhasnorealpointbutwehadtodoitanyways.html'
+            }
+        }
+
+        const mockCode=jest.fn();
+        const mockH={
+            response:jest.fn(()=>{
+                return {code:mockCode}
+            })
+        }
+        await postHandler(mockReq,mockH);
+        expect(mockH.response).toHaveBeenCalledWith('www.xyz.com');
+        expect(mockCode).toHaveBeenCalledWith(200);
+        mockShortenURL.mockRestore();
+        // mockReq.mockRestore();
+    })
+})

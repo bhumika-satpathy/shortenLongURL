@@ -5,10 +5,11 @@ const postHandler=async(req,h)=>{
   try{
     const longURL=req.payload.url;
     const res=await operations.shortenURL(longURL); 
-    h.response(res);
+    return h.response(res).code(200);
   }catch(err){
-    h.response(err.message);
+    h.response(err.message).code(500);
   } 
+}
 
 
 // Redirects to a particular URL
@@ -23,5 +24,4 @@ const getHandler=async(req,h)=>{
   }
 }
 
-module.exports=getHandler
-
+module.exports={getHandler,postHandler}
