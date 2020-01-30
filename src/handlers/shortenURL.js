@@ -1,14 +1,14 @@
 const operations=require('../../utils/operations')
 
 // Gets the shorter version of the long URL posted
-// const postHandler=async(req,h)=>{
-//   try{
-//     const longURL=req.payload;
-//     const res=await toShortURL(longURL); 
-//     h.response(res);
-//   }catch(err){
-//     h.response(err.message);
-//   } 
+const postHandler=async(req,h)=>{
+  try{
+    const longURL=req.payload.url;
+    const res=await operations.shortenURL(longURL); 
+    h.response(res);
+  }catch(err){
+    h.response(err.message);
+  } 
 
 
 // Redirects to a particular URL
