@@ -1,5 +1,5 @@
 const shortid = require('shortid');
-const sequelize=require('../../src/connection')
+const sequelize=require('../src/connection')
 
 //Shorten the long URL
 const shortenedURL=async(address)=>{

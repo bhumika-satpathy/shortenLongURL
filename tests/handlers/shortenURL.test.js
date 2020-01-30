@@ -1,12 +1,14 @@
 const getHandler=require('../../src/handlers/shortenURL');
-const operations=require('../../src/utils/operations');
+const operations=require('../../utils/operations');
 
 
 describe('The getHandler function ',()=>{
     it('should return a status code of 200 when successful',async(done)=>{
         const mockRedirect=jest.spyOn(operations,'redirect');
         const mockReq={
-            payload:'https://akhromieiev.com' 
+            payload:{
+                shortenURL:'https://akhromieiev.com' 
+            }
         }
 
         const mockCode=jest.fn();
