@@ -15,9 +15,10 @@ const operations=require('../../utils/operations')
 const getHandler=async(req,h)=>{
   try{
     const res=await operations.redirect(req.payload.url);
-    h.redirect(res).temporary();
+   await h.redirect(res).temporary();
     return await h.response(`Redirected to ${res}`).code(200);
   }catch(err){
+    console.log(err.message);
     return h.response(err.message).code(500);
   }
 }

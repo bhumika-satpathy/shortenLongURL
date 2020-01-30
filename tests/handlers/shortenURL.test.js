@@ -3,7 +3,7 @@ const operations=require('../../utils/operations');
 
 
 describe('The getHandler function ',()=>{
-    it('should return a status code of 200 when successful',async(done)=>{
+    it('should return a status code of 200 when successful',async()=>{
         const mockRedirect=jest.spyOn(operations,'redirect');
         const mockReq={
             payload:{
@@ -16,12 +16,12 @@ describe('The getHandler function ',()=>{
             response:jest.fn(()=>{
                 return {code:mockCode}
             }),
-            redirect:jest.fn(()=>{
+            redirect:()=>{
                 return {
                     temporary:()=>{
 
                 }}
-            })
+            }
         }
 
         mockRedirect.mockResolvedValue('www.google.com');
@@ -30,6 +30,35 @@ describe('The getHandler function ',()=>{
         expect(mockCode).toHaveBeenCalledWith(200);
         expect(mockH.response).toHaveBeenCalledWith(`Redirected to www.google.com`);
         mockRedirect.mockRestore();
-        done();
+      
     })
+
+    it('should throw an error of status code 500 when it encounters a file error',async()=>{
+       
+        const mockReq={
+            payload:{
+                url:'https://akhromieiev.com' 
+            }
+        }
+
+        const mockCode=jest.fn();
+        const mockH={
+            response:jest.fn(()=>{
+                return {code:mockCode}
+            }),
+            redirect:()=>{
+                return {temporary:()=>{
+
+                }}
+            }
+        }
+
+        const mockRedirect=jest.spyOn(operations,'redirect');
+        mockRedirect.mockRejectedValue(new Error('File Error encountered!'));
+        await getHandler(mockReq,mockH);
+        expect(mockCode).toHaveBeenCalledWith(500);
+        expect(mockH.response).toHaveBeenCalledWith('File Error encountered!')
+        
+    })
+
 })

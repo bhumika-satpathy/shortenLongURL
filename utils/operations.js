@@ -17,7 +17,6 @@ const shortenedURL=async(address)=>{
 const redirect=async(changelongURL)=>{
     const newURL= await sequelize.query(`SELECT shortURL FROM urlshortener WHERE urlshortener.longURL='${changelongURL}';`,
     {type: sequelize.QueryTypes.SELECT});
-    console.log(newURL);
     return newURL;
 }
 
