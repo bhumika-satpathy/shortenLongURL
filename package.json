@@ -1,7 +1,6 @@
 {
   "name": "generateshorturls",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -10,11 +9,18 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^19.0.5",
+    "@hapi/joi": "^17.1.0",
     "jest": "^25.1.0",
     "pg": "^7.18.1",
-    "pg-hstore": "^2.3.3"
+    "pg-hstore": "^2.3.3",
+    "request": "^2.88.0",
+    "sequelize": "^5.21.3"
   },
   "devDependencies": {
     "eslint": "^6.8.0"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
 }
