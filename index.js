@@ -1,12 +1,8 @@
-const buildServer = require('./src/server');
+const createServer=require('./src/server');
 
-const start = async () => {
-  const server = await buildServer();
-  await server.start((err) => {
-    if (err) {
-      throw err;
-    }
-  });
-};
+const start=async()=>{
+    const server=createServer();
+    await server.start();
+}
 start();
-console.log('Server started');
+console.log('Server Started!!')

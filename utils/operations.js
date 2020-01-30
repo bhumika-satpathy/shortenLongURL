@@ -3,7 +3,7 @@ const sequelize=require('../src/connection')
 
 //Shorten the long URL
 const shortenedURL=async(address)=>{
-    address.shortURL=shortid();
+    address.shortURL=shortid.generate();
     await sequelize.query('INSERT INTO urlshortener(longURL,shortURL) VALUES (:longURL,:shortURL)',{
         replacements:{
             longURL:address.longURL,
