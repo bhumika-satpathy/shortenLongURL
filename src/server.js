@@ -1,6 +1,6 @@
 const hapi = require('@hapi/hapi');
 const Joi = require('@hapi/joi');
-const todoRoutes = require('./src/routes/toDoRoutes');
+const urlRoutes = require('./src/routes/urlRoutes');
 const dbPlugin = require('./plugins/db');
 
  const server=()=>{
@@ -11,7 +11,7 @@ const dbPlugin = require('./plugins/db');
 
   const configServer = async ()=> {
   await server.validator(Joi);
-  server.route(todoRoutes);
+  server.route(urlRoutes);
   await server.register(dbPlugin);
   return server;
 };
