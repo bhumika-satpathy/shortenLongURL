@@ -11,6 +11,7 @@
     "@hapi/hapi": "^19.0.5",
     "@hapi/joi": "^17.1.0",
     "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
     "pg": "^7.18.1",
     "pg-hstore": "^2.3.3",
     "request": "^2.88.0",
@@ -18,7 +19,8 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "sequelize-cli": "^5.5.1"
   },
   "directories": {
     "test": "tests"

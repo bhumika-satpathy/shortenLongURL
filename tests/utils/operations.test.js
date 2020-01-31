@@ -1,4 +1,4 @@
-const {redirect,shortenURL}=require('../../utils/operations');
+const {redirect,shortenURL}=require('../../src/utils/operations');
 const sequelize=require('../../src/connection.js');
 describe('The redirect function ',()=>{
     it('should return the long URL to which the short URL redirects',async()=>{
@@ -18,4 +18,7 @@ describe('The shortenURL function ',()=>{
         expect(mockSequelize).toHaveBeenCalled();
     })
 })
+
+
+
 
