@@ -1,4 +1,5 @@
 const server = require('../src/server');
+const db = require('../models/index');
 
 const init = async () => {
   await server.initialize();

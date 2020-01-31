@@ -22,8 +22,8 @@ const redirecting=async(shortURL)=>{
     //console.log(res);
     if(res===null)return [];
     
-    else if(Date.now()-res.time<=1800000){
-        console.log(res.dataValues.longURL);
+    // console.log(x);
+    if(Date.now()-res.time<=1800000){
         return res.dataValues.longURL;
     }
 
