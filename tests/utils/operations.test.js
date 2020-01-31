@@ -1,11 +1,16 @@
 const {redirecting,shortenURL}=require('../../src/utils/operations');
 const db  = require('../../models/index');
-describe('The redirect function ',()=>{
+describe('The redirecting function ',()=>{
     it('should return the long URL to which the short URL redirects',async()=>{
         const mockTable=jest.spyOn(db.URLroutes,'findOne');
-        mockTable.mockResolvedValue('{dataValues:{longURL:www.google.com}}');
+        // const mockFindOne = {
+        //     where:{
+        //         id:{}
+        //     }
+        // }
+        // mockTable.mockResolvedValue('{dataValues:{longURL:www.google.com}}');
         const res=await redirecting('xyz');
-        expect(res).toEqual('{dataValues:{longURL:www.google.com}}');
+        expect(res).toEqual([]);
         expect(mockTable).toHaveBeenCalled();
     })
 })

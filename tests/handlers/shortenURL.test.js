@@ -6,24 +6,21 @@ describe('The getHandler function ',()=>{
     it('should return a status code of 200 when successful',async()=>{
         const mockRedirect=jest.spyOn(operations,'redirecting');
         const mockReq={
-            payload:{
-                url:'https://akhromieiev.com' 
+            params:{
+                url:'xyz' 
             }
         }
 
         const mockCode=jest.fn();
         const mockH={
-            response:jest.fn(()=>{
-                
-            }),
             redirect:jest.fn(()=>{
                 return {code:mockCode}
             })
         }
 
-        mockRedirect.mockResolvedValue('www.google.com');
+        //mockRedirect.mockResolvedValue('www.google.com');
         await getHandler(mockReq,mockH);
-        //expect(mockRedirect).toHaveBeenCalled();
+        expect(mockRedirect).toHaveBeenCalled();
         expect(mockCode).toHaveBeenCalledWith(302);
         expect(mockH.redirect).toHaveBeenCalled();
         mockRedirect.mockRestore();
@@ -33,7 +30,7 @@ describe('The getHandler function ',()=>{
     it('should throw an error of status code 500 when it encounters a file error',async()=>{
        
         const mockReq={
-            payload:{
+            params:{
                 url:'https://akhromieiev.com' 
             }
         }
@@ -43,8 +40,6 @@ describe('The getHandler function ',()=>{
             response:jest.fn(()=>{
                 return {code:mockCode}
             }),
-            redirect:()=>{
-            }
         }
 
         const mockRedirect=jest.spyOn(operations,'redirecting');

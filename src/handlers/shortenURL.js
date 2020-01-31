@@ -23,11 +23,11 @@ const getHandler=async(req,h)=>{
   try{
 
     const res=await operations.redirecting(req.params.url);
-    return h.redirect(res);
+    return h.redirect(res).code(302);
 
   } catch(err){
 
-    console.log(err.message);
+    //console.log(err.message);
     return h.response(err.message).code(500);
 
   }
