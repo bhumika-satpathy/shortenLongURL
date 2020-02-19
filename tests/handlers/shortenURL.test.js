@@ -18,7 +18,7 @@ describe('The getHandler function ',()=>{
             })
         }
 
-        //mockRedirect.mockResolvedValue('www.google.com');
+        mockRedirect.mockResolvedValue('www.google.com');
         await getHandler(mockReq,mockH);
         expect(mockRedirect).toHaveBeenCalled();
         expect(mockCode).toHaveBeenCalledWith(302);

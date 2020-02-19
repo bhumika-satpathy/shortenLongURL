@@ -27,7 +27,7 @@ const redirecting=async(shortURL)=>{
         return res.dataValues.longURL;
     }
 
-    else return [];
+   // else return [];
 }
 
 

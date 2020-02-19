@@ -8,7 +8,7 @@ describe('The redirecting function ',()=>{
         //         id:{}
         //     }
         // }
-        // mockTable.mockResolvedValue('{dataValues:{longURL:www.google.com}}');
+        mockTable.mockResolvedValue('{dataValues:{longURL:www.google.com}}');
         const res=await redirecting('xyz');
         expect(res).toEqual([]);
         expect(mockTable).toHaveBeenCalled();

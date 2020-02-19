@@ -27,7 +27,7 @@ const getHandler=async(req,h)=>{
 
   } catch(err){
 
-    //console.log(err.message);
+    console.log(err.message);
     return h.response(err.message).code(500);
 
   }
